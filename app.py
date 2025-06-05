@@ -1,8 +1,9 @@
 from flask import Flask, request, jsonify
 import openai
+import os
 
 app = Flask(__name__)
-openai.api_key = "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"  
+openai.api_key = os.environ.get("OPENAI_API_KEY")
 
 @app.route("/generate", methods=["POST"])
 def generate():
