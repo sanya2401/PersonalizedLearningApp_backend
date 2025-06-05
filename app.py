@@ -3,7 +3,11 @@ from openai import OpenAI
 import os
 
 app = Flask(__name__)
-client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+
+client = OpenAI(
+    api_key=os.environ.get("OPENAI_API_KEY"),
+    organization=os.environ.get("OPENAI_ORG_ID") 
+)
 
 @app.route("/generate", methods=["POST"])
 def generate():
@@ -21,7 +25,6 @@ def generate():
         return jsonify({"response": response.choices[0].message.content})
     except Exception as e:
         return jsonify({"response": f"Error: {str(e)}"})
-
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
