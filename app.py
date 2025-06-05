@@ -16,7 +16,7 @@ def generate():
         }
 
         payload = {
-            "model": "openai/gpt-3.5-turbo",  # You can use mistral/mixtral too
+            "model": "openai/gpt-3.5-turbo",
             "messages": [{"role": "user", "content": prompt}]
         }
 
@@ -26,3 +26,9 @@ def generate():
 
     except Exception as e:
         return jsonify({"response": f"Error: {str(e)}"})
+
+
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
