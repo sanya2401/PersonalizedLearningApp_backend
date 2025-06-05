@@ -21,3 +21,8 @@ def generate():
         return jsonify({"response": response.choices[0].message.content})
     except Exception as e:
         return jsonify({"response": f"Error: {str(e)}"})
+
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
